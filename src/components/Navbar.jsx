@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import resumePdf from '../assets/Karinigam_SA_PM_Resume.pdf'
 import './Navbar.css'
 
 const NAV_ITEMS = [
@@ -74,7 +75,7 @@ export default function Navbar() {
         ))}
         <li>
           <a
-            href="/resume.pdf"
+            href={resumePdf}
             target="_blank"
             rel="noopener noreferrer"
             className="nav-resume-btn"
