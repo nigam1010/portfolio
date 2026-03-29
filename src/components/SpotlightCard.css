@@ -1,0 +1,202 @@
+/* ═══════════════════════════════════════
+   SpotlightCard — Local pointer glow
+   ═══════════════════════════════════════ */
+
+.spotlight-card {
+  position: relative;
+  border-radius: 16px;
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  contain: layout style;
+}
+
+.spotlight-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Glow layer — follows pointer, LOCAL to card ── */
+.spotlight-glow-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    250px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    hsla(var(--glow-h, 0), var(--glow-s, 100%), var(--glow-l, 60%), 0.12),
+    transparent 100%
+  );
+}
+
+/* ── Border glow — subtle highlight on edges near pointer ── */
+.spotlight-border-glow {
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+  border: 1.5px solid transparent;
+  background: radial-gradient(
+    200px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    hsla(var(--glow-h, 0), var(--glow-s, 100%), var(--glow-l, 60%), 0.4),
+    transparent 100%
+  ) border-box;
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0) border-box;
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0) border-box;
+  -webkit-mask-composite: xor;
+}
+
+.spotlight-card:hover .spotlight-glow-layer,
+.spotlight-card:hover .spotlight-border-glow {
+  opacity: 1;
+}
+
+/* ── Project card content layout ── */
+.spotlight-project-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 28px 24px;
+  gap: 10px;
+}
+
+/* ── Content items need relative positioning to stay above the mirror BG ── */
+.spotlight-project-content > *:not(.spotlight-project-bg-mirror):not(.spotlight-project-accent) {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Mirrored background watermark ── */
+.spotlight-project-bg-mirror {
+  position: absolute;
+  top: 10%;
+  right: -25%; /* Anchor it off to the right */
+  width: 140%;
+  height: 140%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center left;
+  opacity: 0.05; /* Barely visible ghosting */
+  transform: scaleX(-1) rotate(-10deg); /* Mirror horizontally and slight tilt */
+  transform-origin: center right;
+  pointer-events: none;
+  z-index: 0 !important; /* Force it behind all content */
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: blur(2px); /* Soften the background image */
+}
+
+.spotlight-card:hover .spotlight-project-bg-mirror {
+  opacity: 0.12; /* Fade in on hover */
+  transform: scaleX(-1) rotate(-8deg) scale(1.05) translate(10%, 5%);
+  filter: blur(0px); /* Bring it into slight focus */
+}
+
+.spotlight-project-icon {
+  font-size: 2.2rem;
+  margin-bottom: 2px;
+}
+
+.spotlight-project-image {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+
+.spotlight-project-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.spotlight-project-subtitle {
+  font-family: var(--font-porsche);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--titanium);
+  text-transform: uppercase;
+}
+
+.spotlight-project-desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.spotlight-project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.spotlight-tech-badge {
+  font-family: var(--font-heading);
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(225, 6, 0, 0.08);
+  border: 1px solid rgba(225, 6, 0, 0.18);
+  color: var(--racing-red);
+}
+
+.spotlight-project-arrow {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--racing-red);
+  margin-top: 10px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.spotlight-card:hover .spotlight-project-arrow {
+  opacity: 1;
+  letter-spacing: 3px;
+}
+
+/* Color accent line at top */
+.spotlight-project-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--card-accent, var(--racing-red));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spotlight-card:hover .spotlight-project-accent {
+  opacity: 1;
+}
