@@ -2,6 +2,7 @@
 
 Welcome to the **KSA Racing Portfolio**, a high-performance, F1-inspired personal portfolio designed to showcase premium software engineering capabilities through an immersive, cinematic web experience.
 
+## Deployed Vercel Link: https://portfolio-nine-steel-infpypoq80.vercel.app/
 ## ✨ Highlights
 - **Engine Start Cinematic Intro:** A highly-optimized, 60fps SVG-masked engine blast animation that seamlessly unmounts into the main experience.
 - **Canvas Flowing Light Trails:** Dynamic speed-line backgrounds powered by the HTML5 Canvas API in the Hero section.
