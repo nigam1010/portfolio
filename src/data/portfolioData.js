@@ -6,6 +6,8 @@ import avatarImg from '../assets/avatar.png'
 import moto1Img from '../assets/Moto1.png'
 import moto2Img from '../assets/Moto2.png'
 import moto3Img from '../assets/Moto3.png'
+import alprImg from '../assets/alpr.png'
+import pmImg from '../assets/pm_projects.png'
 
 export const PROJECTS = [
   {
@@ -17,6 +19,12 @@ export const PROJECTS = [
     color: '#FFD700',
     image: porscheImg,
     sections: [
+      {
+        type: 'link',
+        title: '',
+        url: 'https://github.com/nigam1010/Moto-Mind',
+        label: 'View Repository'
+      },
       {
         type: 'text',
         title: '🎯 Problem Statement',
@@ -57,6 +65,46 @@ export const PROJECTS = [
         type: 'text',
         title: '📊 Impact & Value',
         content: 'Simulates a real automotive sales funnel, reduces dependency on physical showrooms, enables data-driven personalization, and can be scaled into a real SaaS product for dealerships.'
+      }
+    ]
+  },
+  {
+    id: 'pm-case-studies',
+    title: 'Product Management Projects',
+    subtitle: 'Teardowns, Strategies & Analysis',
+    description: 'A comprehensive collection of product management case studies, including product teardowns, growth strategies, and feature analysis.',
+    tech: ['Product Strategy', 'Growth Strategy', 'Product Teardown', 'Mindmapping'],
+    color: '#9D00FF',
+    image: pmImg,
+    sections: [
+      {
+        type: 'text',
+        title: '📂 Case Studies Collection',
+        content: 'This project showcases a variety of Product Management documentation, analyses, and strategy proposals focusing on user experience, market growth, and technical architecture.'
+      },
+      {
+        type: 'link',
+        title: 'IRCTC Product Teardown',
+        url: 'https://github.com/nigam1010/irctc-product-teardown',
+        label: 'View Teardown'
+      },
+      {
+        type: 'link',
+        title: 'Jobaaj Growth Strategy',
+        url: 'https://github.com/nigam1010/jobaaj-growth-strategy',
+        label: 'View Growth Strategy'
+      },
+      {
+        type: 'link',
+        title: 'Learnexa Mindmap',
+        url: 'https://github.com/nigam1010/learnexa-mindmap',
+        label: 'View Mindmap'
+      },
+      {
+        type: 'link',
+        title: 'Windows 11 Product Analysis',
+        url: 'https://github.com/nigam1010/windows11-product-analysis',
+        label: 'View Analysis'
       }
     ]
   },
@@ -211,6 +259,43 @@ export const PROJECTS = [
           'Canvas-based flowing light trails',
           'Framer Motion page transitions',
           'Dynamic state-driven component lifecycle routing'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'alpr-system',
+    title: 'ALPR System',
+    subtitle: 'Automatic License Plate Recognition',
+    description: 'A computer vision system that automatically detects and extracts license plates from traffic video streams, storing the extracted registration numbers in a file.',
+    tech: ['Python', 'OpenCV', 'Ultralytics', 'Tesseract', 'LabelImg'],
+    color: '#00FF9D',
+    image: alprImg,
+    sections: [
+      {
+        type: 'link',
+        title: '',
+        url: 'https://github.com/nigam1010/Automated_License_Plate_Recognition_System',
+        label: 'View Repository'
+      },
+      {
+        type: 'text',
+        title: '🎯 Problem Statement',
+        content: 'Manual traffic monitoring and license plate logging is highly inefficient and prone to human error, creating a need for automated, real-time vehicle identification.'
+      },
+      {
+        type: 'text',
+        title: '💡 Solution',
+        content: 'An automated computer vision pipeline using Ultralytics for robust object detection and Tesseract for Optical Character Recognition (OCR) to extract text from moving vehicles.'
+      },
+      {
+        type: 'features',
+        title: '⚙️ Technical Pipeline',
+        items: [
+          { title: '📹 Video Processing', desc: 'Real-time frame extraction and processing from traffic feeds using OpenCV.' },
+          { title: '🔍 Object Detection', desc: 'Object detection models using Ultralytics to accurately bound license plates.' },
+          { title: '📝 Text Extraction', desc: 'Tesseract OCR applied to bounded regions to digitize the license plate characters.' },
+          { title: '💾 Data Logging', desc: 'Automated extraction and storage of registration numbers to local files.' }
         ]
       }
     ]
